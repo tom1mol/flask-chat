@@ -1,0 +1,3 @@
+Flask Chat Application - Introduction               https://youtu.be/miLkppyHLCA
+
+beginning the project                               https://youtu.be/4bV8BAOsR6M

@@ -1,4 +1,6 @@
 import os     #access environment variables
+from datetime import datetime    #import datetime module from datetime library(built in module in python library)
+                                    #allows us to work specifically with dates and times
 from flask import Flask, redirect           #import redirect module from flask library
 
 app = Flask(__name__)                               #initialise new flask app(define flask app)
@@ -6,7 +8,9 @@ messages = []                                       #empty list
 
 def add_messages(username, message):        #function that will take username and message and append it to list
     """Add messages to the 'messages' list"""
-    messages.append("{}: {}".format(username, message)) #append string using format method
+    now = datetime.now().strftime("%H:%M:%S") #strf method takes date/time obj and converts to a string using given format
+                #now method to get current time
+    messages.append("({}) {}: {}".format(now, username, message)) #append string using format method
     
     
 def get_all_messages():

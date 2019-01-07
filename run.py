@@ -1,15 +1,16 @@
 import os     #access environment variables
 from datetime import datetime    #import datetime module from datetime library(built in module in python library)
                                     #allows us to work specifically with dates and times
-from flask import Flask, redirect           #import redirect module from flask library
-
+from flask import Flask, redirect, render_template         #import redirect module from flask library
+                        #render_template. rather than import a string we import this module(relates to index.html)
+                        
 app = Flask(__name__)                               #initialise new flask app(define flask app)
 messages = []                                       #empty list
 
 def add_messages(username, message):        #function that will take username and message and append it to list
     """Add messages to the 'messages' list"""
     now = datetime.now().strftime("%H:%M:%S") #strf method takes date/time obj and converts to a string using given format
-                #now method to get current time
+                # .now() method used to get current time
     messages.append("({}) {}: {}".format(now, username, message)) #append string using format method
     
     
@@ -22,7 +23,8 @@ def get_all_messages():
 def index():            #define function that'll be bound to our decorator
 
     """Main page with instructions"""
-    return "To send a message use /USERNAME/MESSAGE"
+    #return "To send a message use /USERNAME/MESSAGE"..this one applied to putting username/mess in address bar
+    return render_template("index.html")
     
     
 @app.route('/<username>')       #users personalised welcome page

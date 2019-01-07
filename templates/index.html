@@ -4,6 +4,10 @@
     </head>
     
     <body>
-        <p>To send a message use /USERNAME/MESSAGE</p>
+        <form method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">   <!-- ID for styling, name for reference in run.py-->
+            <button>Go to chat!</button>        <!-- when clicked the form is posted -->
+        </form>
     </body>
 </html>

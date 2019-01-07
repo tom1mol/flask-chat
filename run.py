@@ -1,10 +1,15 @@
 import os     #access environment variables
 from datetime import datetime    #import datetime module from datetime library(built in module in python library)
                                     #allows us to work specifically with dates and times
-from flask import Flask, redirect, render_template         #import redirect module from flask library
+from flask import Flask, redirect, render_template, request, session        
+                        #import redirect module from flask library
                         #render_template. rather than import a string we import this module(relates to index.html)
+                        #request module. handle our username form
+                        #session module. handle session variables
                         
 app = Flask(__name__)                               #initialise new flask app(define flask app)
+app.secret_key = "randomstring123"      #generate session ID using secret_key(random list letters/num/characters)
+                                        #generally set it as environment variable. for now is as a string            
 messages = []                                       #empty list
 
 def add_messages(username, message):        #function that will take username and message and append it to list
@@ -19,10 +24,18 @@ def get_all_messages():
     return "<br>".join(messages)        #join method
     
     
-@app.route('/')     #root decorator for index page
+@app.route('/', methods = ["GET", "POST"])  #root decorator for index page. get and post relates to form in index.html
 def index():            #define function that'll be bound to our decorator
 
     """Main page with instructions"""
+    
+    if request.method == "POST":    #create new var in session called username
+        session["username"] = request.form["username"]  #equal to request.form["username"]
+    
+    if "username" in session:       #if username exists..redirect to personal chat page
+        return redirect(session["username"])    #redirect to contents of session username var
+        
+    
     #return "To send a message use /USERNAME/MESSAGE"..this one applied to putting username/mess in address bar
     return render_template("index.html")
     

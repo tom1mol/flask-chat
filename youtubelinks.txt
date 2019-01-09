@@ -11,6 +11,9 @@ Creating An Index.Html Page                         https://youtu.be/CyaSQUjoIIU
 creating users                                      https://youtu.be/miakE-jDNzo
 
 Upgrading Our Chat Functionality  :
-Storing Our Messages In A Dict                      https://youtu.be/3e7AjN9eBAg
+Storing Our Messages In A Dict                                  https://youtu.be/3e7AjN9eBAg
+Refactoring To Use Chat.Html Instead Of A Single String         https://youtu.be/Rq7rC3GYgQw
+Simple Long Polling With JavaScript                             https://youtu.be/o4qjxNvrpyw
+
 
 

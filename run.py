@@ -46,9 +46,14 @@ def index():            #define function that'll be bound to our decorator
 @app.route('/<username>')       #users personalised welcome page
 def user(username):             #a function that will bind to the route decorator. argument of username
     """display chat messages"""
+    return render_template("chat.html", username = username, chat_messages = messages)
+    
     #return "Welcome, {0}: {1}".format(username, messages )          #return to the user hi + username
-    return "<h1>Welcome, {0}</h1>{1}".format(username, messages)
+    #return "<h1>Welcome, {0}</h1>{1}".format(username, messages)
     #welcome message in h1 tags..subsequent message(get-all-messages outside the h1)
+    
+    
+    
 @app.route('/<username>/<message>')
 def send_message(username, message):     #function that is binded to decorator. 2 args username and message
     """create a new message and redirect back to the chat page """

@@ -8,7 +8,18 @@
 </head>
 <body>
     <h1>Welcome, {{ username }}</h1>
-    {{ chat_messages }}
+    {% for message in chat_messages %} <!-- as we loop through chat_message list..message set to indiv message dictionary-->
+        <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p> <!--timestamp,from,message..keys from dictionary-->
+    {% endfor %}
+    
+    <script>            
+        let timer = setTimeout(function() {     
+            location.reload();
+        }, 5000)
+        
+    </script>
+    <!--built in js setTimeout function runs a function at given interval
+    function is location.reload which refreshes the page-->
     
 </body>
 </html>

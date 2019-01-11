@@ -8,16 +8,44 @@
 </head>
 <body>
     <h1>Welcome, {{ username }}</h1>
+    
+    <form method = "POST">
+        <textarea cols="50" rows="4" name="message" id="message"></textarea>
+        <br>
+        <button>Send message</button>
+    </form>
+    
+    
+    
     {% for message in chat_messages %} <!-- as we loop through chat_message list..message set to indiv message dictionary-->
         <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p> <!--timestamp,from,message..keys from dictionary-->
     {% endfor %}
     
-    <script>            
+    <script>   
+        let textbox = document.getElementById("message")
+    
         let timer = setTimeout(function() {     
             location.reload();
         }, 5000)
         
-    </script>
+        
+        textbox.onkeydown = function(e) {
+            
+            clearTimeout(timer)
+            
+            timer = setTimeout(function() {
+                location.reload();
+            }, 5000)
+        }
+        
+    </script>  <!-- textbox.onkeydown=function(e)..function runs when key pressed in textbox
+                    we clear the timeout function first with timer variable
+                    then start timer again using set timeout function
+                    
+                    -onkeydown function runs whenever theres a keypress
+                    -cleartimeout function stops timer
+                    -location.reload starts it again -->
+                    
     <!--built in js setTimeout function runs a function at given interval
     function is location.reload which refreshes the page-->
     

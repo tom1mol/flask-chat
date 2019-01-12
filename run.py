@@ -8,8 +8,10 @@ from flask import Flask, redirect, render_template, request, session, url_for
                         #session module. handle session variables
                         
 app = Flask(__name__)                               #initialise new flask app(define flask app)
-app.secret_key = "randomstring123"      #generate session ID using secret_key(random list letters/num/characters)
-                                        #generally set it as environment variable. for now is as a string            
+app.secret_key = os.getenv("SECRET","randomstring123")      #generate session ID using secret_key(random list letters/num/characters)
+                                        #generally set it as environment variable. for now is as a string   
+                                        #make secret key an environment variable
+                    #leave randomstring123 as 2nd arg as it becomes default value if flask cant find var SECRET
 messages = []                                       #empty list
 
 def add_message(username, message):        #function that will take username and message and append it to list
@@ -73,7 +75,9 @@ def send_message(username, message):     #function that is binded to decorator. 
     add_messages(username, message)                 #call add_messages function with username/message arguments
     return redirect(username)       #redirect back to users personalised welcome page(above)
 """    
-app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)             #get IP and port
+app.run(host=os.getenv('IP', "0.0.0.0"), port=int(os.getenv('PORT', "5000")), debug=False)       #get IP and port
+#by setting IP to 0.0.0.0 and port to 5000..we dont have to set them in heroku
+#set debug to false as we dont want debug=true to be set in production
     
     
     

@@ -1,0 +1,43 @@
+to deploy an app to heroku:
+
+create a requirements.txt file
+create a procfile
+create a new heroku app
+create any config or environmental variables
+push the code to heroku
+
+create a Procfile using terminal window(bash):
+type:
+
+echo web: python run.py > Procfile       (this creates the Procfile..dont forget capital P)
+git add .
+git commit -m"Added Procfile for deployment"
+heroku login            #heroku login command. asks u to enter heroku credentials. email and pass
+heroku apps:create flask-chatroom-project1978     (had to put 1978...as it said flask-chatroom-project already taken)
+
+and it creates:
+https://flask-chatroom-project1978.herokuapp.com/  
+https://git.heroku.com/flask-chatroom-project1978.git
+
+then type:
+git remote -v
+
+output:
+heroku  https://git.heroku.com/flask-chatroom-project1978.git (fetch)
+heroku  https://git.heroku.com/flask-chatroom-project1978.git (push)
+origin  https://github.com/tom1mol/flask-chat.git (fetch)
+origin  https://github.com/tom1mol/flask-chat.git (push)
+
+before pushing app to heroku set environmental variables in heroku. (login to heroku.com)
+click on the project which we deployed and is listed
+settings
+reveal config vars  (none there yet)
+set key to SECRET
+set value to secretproductionkey1234
+add
+
+now we push app to heroku:
+type:
+git push -u heroku master           (whole load of shit now floods down the screen..pushes app to heroku)
+
+
